@@ -1,0 +1,80 @@
+C:\Users\moury>redis-cli
+127.0.0.1:6379> set username "Rahul"
+OK
+127.0.0.1:6379> get username
+"Rahul"
+127.0.0.1:6379> INCR login_count
+(integer) 1
+127.0.0.1:6379> INCR login_count
+(integer) 2
+127.0.0.1:6379> INCR login_count
+(integer) 3
+127.0.0.1:6379> INCR login_count
+(integer) 4
+127.0.0.1:6379> HSET user:101 name "Rahul" email "rahul@gmail.com" role "student"
+(integer) 3
+127.0.0.1:6379> HGET user:101 email
+"rahul@gmail.com"
+127.0.0.1:6379> HGET user:101 name
+"Rahul"
+127.0.0.1:6379> HGET user:101 role
+"student"
+127.0.0.1:6379> HGETALL user:101
+1) "name"
+2) "Rahul"
+3) "email"
+4) "rahul@gmail.com"
+5) "role"
+6) "student"
+127.0.0.1:6379> LPUSH tasks "Task A"
+(integer) 1
+127.0.0.1:6379> RPUSH tasks "Task A"
+(integer) 2
+127.0.0.1:6379> LRANGE tasks 0 -1
+1) "Task A"
+2) "Task A"
+127.0.0.1:6379> SADD skills "python"
+(integer) 1
+127.0.0.1:6379> SADD skills "redis"
+(integer) 1
+127.0.0.1:6379> SMEMBERS skills
+1) "python"
+2) "redis"
+127.0.0.1:6379> LRANGE tasks 0 -1
+1) "Task A"
+2) "Task A"
+127.0.0.1:6379> ZADD leaderboard 950 Rahul
+(integer) 1
+127.0.0.1:6379> ZADD leaderboard 880 Anil
+(integer) 1
+127.0.0.1:6379> ZREVRANGE leaderboard 0 -1 WITHSCORES
+1) "Rahul"
+2) "950"
+3) "Anil"
+4) "880"
+127.0.0.1:6379> SUBSCRIBE notifications
+Reading messages... (press Ctrl-C to quit)
+1) "subscribe"
+2) "notifications"
+3) (integer) 1
+
+
+127.0.0.1:6379> PUBLISH notifications "New course available"
+(integer) 0
+127.0.0.1:6379> SET otp:user101 482931 EX 300
+OK
+127.0.0.1:6379> TTL otp:user101
+(integer) 291
+127.0.0.1:6379> TTL otp:user101
+(integer) 291
+127.0.0.1:6379> TTL otp:user101
+(integer) 289
+127.0.0.1:6379> TTL otp:user101
+(integer) 288
+127.0.0.1:6379> TTL otp:user101
+(integer) 287
+127.0.0.1:6379> TTL otp:user101
+(integer) 286
+127.0.0.1:6379> TTL otp:user101
+(integer) 283
+127.0.0.1:6379>
